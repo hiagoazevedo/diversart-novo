@@ -304,170 +304,89 @@
 
     /* Correções específicas para dispositivos iOS (iPhone) */
     @supports (-webkit-touch-callout: none) {
-      /* Layout completamente diferente para iOS - abordagem conservadora */
       .home-section {
-        position: relative;
-        height: 100vh; /* Altura fixa */
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 10% 5%;
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
       }
 
       .video-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
       }
 
       .video-background video {
-        display: none; /* Ocultar vídeo em iOS para evitar problemas */
-      }
-
-      /* Adicionar background estático em vez de vídeo */
-      .video-background::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('assets/TEXTURA-1.jpg');
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-      }
-
-      .logo-container {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 5vh;
-        z-index: 10;
-      }
-
-      .logo {
-        height: auto;
-        width: 80%;
-        max-width: 250px;
-      }
-
-      .content-container {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        width: 100%;
-        z-index: 10;
-        margin-top: auto;
-      }
-
-      .main-text {
-        margin-bottom: 5vh;
-      }
-
-      .main-text h1 {
-        font-size: 1.2rem;
-        line-height: 1.4;
-        width: 100%;
-      }
-
-      .main-text .highlight {
-        width: 100%;
-        max-width: 100%;
-        display: inline;
-      }
-
-      .cta-button {
-        padding: 12px 0;
-        font-size: 1rem;
-        width: 100%;
-        text-align: center;
-        display: block;
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
       }
     }
     
     /* Regras específicas para iOS usando a classe no body */
     .ios-device .home-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      padding: 10% 5%;
-      position: relative;
+      justify-content: space-between;
     }
     
     .ios-device .video-background video {
-      display: none;
-    }
-    
-    .ios-device .video-background::before {
-      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('assets/TEXTURA-1.jpg');
-      background-size: cover;
-      background-position: center;
-      z-index: 1;
+      z-index: 0;
     }
     
     .ios-device .logo-container {
-      position: relative;
-      top: auto;
-      left: auto;
-      margin: 0 auto 5vh auto;
-      width: 100%;
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: auto;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       z-index: 10;
     }
     
     .ios-device .logo {
-      height: auto;
-      width: 70%;
-      max-width: 250px;
+      height: 40vh;
+      max-height: 200px;
+      width: auto;
     }
     
     .ios-device .content-container {
-      position: relative;
-      bottom: auto;
-      left: auto;
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
       right: auto;
-      width: 100%;
+      width: 90%;
       z-index: 10;
-      margin-top: auto;
-      margin-bottom: 10vh;
     }
     
     .ios-device .main-text h1 {
       font-size: 1.2rem;
       line-height: 1.5;
       width: 100%;
+      text-align: left;
     }
     
     .ios-device .main-text .highlight {
-      width: 100%;
+      width: auto;
       max-width: 100%;
-      display: inline;
+      display: inline-block;
     }
     
     .ios-device .cta-button {
-      padding: 12px 0;
-      font-size: 1rem;
-      width: 100%;
-      text-align: center;
-      display: block;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      width: auto;
+      text-align: left;
+      display: inline-block;
     }
     
     /* ===== SEÇÃO SOBRE NÓS ===== */
@@ -4202,12 +4121,6 @@
       if (isIOS) {
         // Adicionar classe específica para iOS no body
         document.body.classList.add('ios-device');
-        
-        // Substituir vídeo por imagem estática em iOS
-        const videoElement = document.querySelector('.video-background video');
-        if (videoElement) {
-          videoElement.style.display = 'none';
-        }
       }
       
       // Primeira execução
@@ -4223,13 +4136,10 @@
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       }
       
-      // Ajustar layout após carregamento completo
+      // Ajustar layout em dispositivos iOS se necessário
       window.addEventListener('load', function() {
         if (isIOS) {
-          // Forçar reflow para garantir que o layout seja aplicado corretamente
-          document.body.style.display = 'none';
-          document.body.offsetHeight; // Trigger reflow
-          document.body.style.display = '';
+          console.log('iOS device detected');
         }
       });
     });

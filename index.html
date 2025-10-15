@@ -173,7 +173,8 @@
       font-style: italic;
       font-weight: var(--font-weight-regular);
       display: inline-block;
-      width: 700px;
+      max-width: 700px;
+      width: 100%;
     }
 
     .cta-button {
@@ -319,7 +320,7 @@
       }
 
       .logo-container {
-        top: 8%;
+        top: 2%;
         left: 0;
         width: 100%;
         display: flex;
@@ -328,12 +329,12 @@
       }
 
       .logo {
-        height: 40vh;
-        max-height: 300px;
+        height: 30vh;
+        max-height: 200px;
       }
 
       .content-container {
-        bottom: 10%;
+        bottom: 20%;
         left: 5%;
         right: 5%;
         text-align: center;
@@ -342,8 +343,20 @@
       }
 
       .main-text h1 {
-        font-size: 1.4rem;
+        font-size: 1.1rem;
         width: 100%;
+        margin-bottom: 15px;
+        line-height: 1.4;
+      }
+
+      .main-text {
+        margin-bottom: 10px;
+      }
+
+      .main-text .highlight {
+        width: 100%;
+        max-width: 100%;
+        display: inline;
       }
 
       .cta-button {
@@ -1435,7 +1448,7 @@
         bottom: 100px;
         left: 185px;
         width: 180px;
-        margin-left: 10px;
+        margin-left: 5px;
       }
 
       .custom-main-title {

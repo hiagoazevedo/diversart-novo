@@ -887,6 +887,12 @@
       object-fit: cover;
     }
 
+    #mesasCarousel .carousel-item img,
+    #sofasCarousel .carousel-item img,
+    #complementoCarousel .carousel-item img {
+      object-fit: contain;
+    }
+
     /* Carousel Controls */
     .carousel-controls {
       position: absolute;
@@ -1243,9 +1249,10 @@
 
     .custom-sofa-image {
       width: 100%;
-      max-width: 375px;
-      height: 300px;
+      max-width: 430px;
+      height: 325px;
       overflow: hidden;
+      z-index: 2;
     }
 
     .custom-sofa-image img {
@@ -2492,6 +2499,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -2620,7 +2628,6 @@
 
       .footer-left-image {
         height: 250px;
-        object-position: center 2%;
       }
 
       .footer-right {
@@ -2669,7 +2676,6 @@
       
       .footer-left-image {
         height: 200px;
-        object-position: center 20%;
       }
 
       .footer-black-band {
